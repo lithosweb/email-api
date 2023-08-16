@@ -1,0 +1,22 @@
+{
+    "name": "admin/email.zungvi.com",
+    "authors": [
+        {
+            "name": "Fabrice Kulhe",
+            "email": "fabricekulhe@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.5",
+        "phpmailer/phpmailer": "^6.8",
+        "egulias/email-validator": "^4.0",
+        "vlucas/valitron": "^1.4",
+        "bramus/router": "^1.6",
+        "guzzlehttp/guzzle": "^7.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "email\\": "./"
+        }
+    }
+}

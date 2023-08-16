@@ -1,0 +1,6 @@
+secrets.json
+.env
+.htaccess
+draft.txt
+/vendor
+README.md
