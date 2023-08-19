@@ -2,19 +2,18 @@
 
 declare(strict_types=1);
 
-namespace email\model\uri;
+namespace email\model\validation;
 
+use email\mail\Send;
 use email\model\Json;
-use email\model\Validation;
 
-abstract class Base
-{
-    public Validation $va;
+abstract class Base {
+    public Send $send;
     public Json $json;
 
     public function __construct()
     {
-        $this->va = new Validation;
+        $this->send = new Send;
         $this->json = new Json;
-    }
+    }    
 }

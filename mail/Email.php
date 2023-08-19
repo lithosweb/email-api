@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace email\mail;
 
-use email\helpers\Env_;
 use PHPMailer\PHPMailer\PHPMailer;
 
 abstract class Email

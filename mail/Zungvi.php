@@ -31,7 +31,7 @@ class Zungvi extends Email
             //Content
             $this->mail->isHTML(true);
             $this->mail->Subject = ucfirst($subject);
-            $htmll = View::getHtml(html: $subject);
+            $htmll = View::renderPrint(html: $subject);
             $this->mail->Body    = $htmll;
 
             // Send Email

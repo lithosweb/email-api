@@ -4,3 +4,9 @@ secrets.json
 draft.txt
 /vendor
 README.md
+/storage
+composer.json
+composer.lock
+.gitignore
+/public/.htaccess
+.htaccess

@@ -9,12 +9,6 @@ use GuzzleHttp\Psr7\Request;
 
 class Home
 {
-    public static function home()
-    {
-        // self::draft();
-        self::sent();
-    }
-
     public function async()
     {
         $client = new Client();
@@ -30,19 +24,5 @@ class Home
         // Or, if you don't need to pass in a request instance:
         $promise = $client->requestAsync('GET', 'http://httpbin.org/get');
         $promise->wait();
-    }
-
-    public static function draft()
-    {
-        $path = __DIR__ . '/../storage/draft.json';
-        $data = file_get_contents($path);
-        return print_r($data);
-    }
-
-    public static function sent()
-    {
-        $path = __DIR__ . '/../storage/sent.json';
-        $data = file_get_contents($path);
-        return print_r($data);
-    }
+    } 
 }

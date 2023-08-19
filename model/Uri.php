@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace email\model;
 
-use email\mail\Send;
 use email\model\uri\Delete;
 use email\model\uri\Get;
 use email\model\uri\Patch;
@@ -16,7 +15,6 @@ class Uri
     public Post $post;
     public Patch $patch;
     public Delete $delete;
-    public Send $s;
 
     public function __construct()
     {
@@ -24,30 +22,25 @@ class Uri
         $this->post = new Post;
         $this->patch = new Patch;
         $this->delete = new Delete;
-        $this->s = new Send;
     }
 
-    public function Get()
+    public function Get($uri, $data): void
     {
-        $data = json_decode(file_get_contents('php://input'), true);
-        return $this->get->process($data);
+        $this->get->process($uri, $data);
     }
 
-    public  function Post()
+    public  function Post($uri, $data): void
     {
-        $data = json_decode(file_get_contents('php://input'), true);
-        return $this->post->process($data);
+        $this->post->process($uri, $data);
     }
 
-    public  function Patch()
+    public  function Patch($uri, $data): void
     {
-        $data = json_decode(file_get_contents('php://input'), true);
-        $this->post->process($data);;
+        $this->patch->process($uri, $data);
     }
 
-    public  function Delete()
+    public  function Delete($uri, $data): void
     {
-        $data = json_decode(file_get_contents('php://input'), true);
-        $this->post->process($data);
+        $this->delete->process($uri, $data);
     }
 }

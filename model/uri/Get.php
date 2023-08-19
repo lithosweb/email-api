@@ -4,40 +4,72 @@ declare(strict_types=1);
 
 namespace email\model\uri;
 
-use email\helpers\Env_;
-
 class Get extends Base
 {
-    public function process($data = [])
+    public function process($url, $data): void
     {
-        if ($data == null) {
-            $this->notFound();
+        $this->va->firstCheck($data);
+
+        switch ($url) {
+            case '/api/v1/email/history/log':
+                $this->va->get->history();
+                exit;
+                break;
+
+            case '/api/v1/email/history/success':
+                $this->va->get->history(file: 'success');
+                exit;
+                break;
+
+            case '/api/v1/email/history/fail':
+                $this->va->get->history(file: 'fail');
+                exit;
+                break;
+
+            case '/api/v1/email/storage/log':
+                $this->va->get->storage();
+                exit;
+                break;
+
+            case '/api/v1/email/storage/fail':
+                $this->va->get->storage(dir: 'fail');
+                exit;
+                break;
+                
+            case '/api/v1/email/storage/success':
+                $this->va->get->storage(dir: 'success');
+                exit;
+                break;
+
+            case '/api/v1/email/history/bucket/log':
+                $this->va->notImplemented();
+                exit;
+                break;
+
+            case '/api/v1/email/history/bucket/cron/log':
+                $this->va->notImplemented();
+                exit;
+                break;
+
+            case '/api/v1/email/history/cron/log':
+                $this->va->notImplemented();
+                exit;
+                break;
+
+            case '/api/v1/verification/history/log':
+                $this->va->notImplemented();
+                exit;
+                break;
+
+            case '/api/v1/verification/storage/log':
+                $this->va->notImplemented();
+                exit;
+                break;
+
+            default:
+                $this->va->switch_default();
+                exit;
+                break;
         }
-        if (! array_key_exists('email', $data)) {
-            $this->notFound();
-        }
-        if (!array_key_exists('task', $data)) {
-            $this->notFound();
-        }
-switch ($data['task']) {
-    case 'welcome':
-        $task = 'welcome';
-        break;
-    
-    case 'password':
-        $task = 'password';
-        break;
-    
-    case 'report':
-        $task = 'report';
-        break;
-    
-    default:
-        $task = 'welcome';
-        break;
-}
-        $z = $this->s->sendEmail($data['email'], $task);
-        echo json_encode(['message' => $z]);
-        return $z;
     }
 }

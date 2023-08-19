@@ -26,12 +26,13 @@ class View implements Model
         $htm = self::getHtml($html);
         $layou = self::getLayout($layout);
         echo str_replace('{{content}}', $htm, $layou);
+        exit;
     }
 
     public static function renderPrint($html = 'welcome', $layout = '_main'): string
     {
         $htm = self::getHtml($html);
         $layou = self::getLayout($layout);
-        return str_replace('{{content}}', $htm, $layou);
+        return (string) str_replace('{{content}}', $htm, $layou);
     }
 }
